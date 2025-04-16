@@ -33,7 +33,7 @@ json decode_bencoded_value(const std::string& encoded_value) {
             {
                 if(!std::isdigit(extracted_value[i]))
                 {
-                    throw std:runtime_error("Invalid Integer Value in encoded string: "+encoded_value);
+                    throw std::runtime_error("Invalid Integer Value in encoded string: "+encoded_value);
                 }
             }
             int64_t integer_value=std::atoll(extracted_value.c_str());
