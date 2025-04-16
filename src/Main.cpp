@@ -20,8 +20,32 @@ json decode_bencoded_value(const std::string& encoded_value) {
         } else {
             throw std::runtime_error("Invalid encoded value: " + encoded_value);
         }
-    } else {
-        throw std::runtime_error("Unhandled encoded value: " + encoded_value);
+    }
+    else if(encoded_value[0]=='i' && encoded_value[encoded_value.length()-1]=='e')
+    {
+        //minimum size will be 3 for the integer bencoded value
+        size_t encoded_value_size=encoded_value.size();
+        if(encoded_value_size>=3)
+        {
+            std::string extracted_value=encoded_value.substr(1,encoded_value_size-2);
+            //now that we have extracted the value from the string we will check if the extracted value is consistent
+            for(int i=0;i<extracted_value.size();i++)
+            {
+                if(!std::isdigit(extracted_value[i]))
+                {
+                    throw std:runtime_error("Invalid Integer Value in encoded string: "+encoded_value);
+                }
+            }
+            int64_t integer_value=std::atoll(extracted_value.c_str());
+            return(json(integer_value));
+
+        }
+        else{
+            throw std::runtime_error("Invalid encoded value: " + encoded_value);
+
+        
+        }
+
     }
 }
 
