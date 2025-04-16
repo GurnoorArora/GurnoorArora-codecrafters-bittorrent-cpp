@@ -47,6 +47,9 @@ json decode_bencoded_value(const std::string& encoded_value) {
         }
 
     }
+    else{
+        throw std::runtime_error("Type not handeled yet");
+    }
 }
 
 int main(int argc, char* argv[]) {
