@@ -31,7 +31,7 @@ json decode_bencoded_value(const std::string& encoded_value) {
             //now that we have extracted the value from the string we will check if the extracted value is consistent
             for(int i=0;i<extracted_value.size();i++)
             {
-                if(!std::isdigit(extracted_value[i]) && !(extracted_value=="-"))
+                if(!std::isdigit(extracted_value[i]) && !(extracted_value[i]=="-"))
                 {
                     throw std::runtime_error("Invalid Integer Value in encoded string: "+encoded_value);
                 }
